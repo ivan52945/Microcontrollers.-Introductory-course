@@ -17,8 +17,8 @@ void init_led(GPIO_TypeDef* port, uint16_t pin)
 		__HAL_RCC_GPIOB_CLK_ENABLE();
 	else if (port == GPIOC)
 		__HAL_RCC_GPIOC_CLK_ENABLE();
-	else
-		__HAL_RCC_GPIOC_CLK_ENABLE();
+	else // А что — иначе? Наверное, имеет смысл либо возвращать ошибку, либо ничего не делать, либо инициализировать оставшийся порт.
+		__HAL_RCC_GPIOD_CLK_ENABLE();
 
 	GPIO_InitTypeDef GPIO_InitStruct = {0};
 
