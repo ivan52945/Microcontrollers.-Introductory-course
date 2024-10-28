@@ -61,25 +61,25 @@ static void create_addr_hex(char str[], uint8_t addr[])
 {
 	uint16_t first = (uint32_t)addr >> 16;
 
-	uint32_t l = sprintf(str, ":02000004%04X", first);
+	uint32_t l = sprintf(str, ":02 0000 04 %04X", first);
 
 	uint8_t checksum = get_checkSum(str, l);
 
-	sprintf(str + l, "%02X", checksum);
+	sprintf(str + l, " %02X", checksum);
 }
 
 static void create_main_data_hex(char str[], uint8_t addr[], uint32_t n)
 {
 	uint32_t last = (uint32_t)addr & 0xFFFF;
 
-	uint32_t l = sprintf(str, ":%02X%04X00", (unsigned int)n, (unsigned int)last);
+	uint32_t l = sprintf(str, ":%02X %04X 00 ", (unsigned int)n, (unsigned int)last);
 
 	for(uint32_t i = 0; i < n; i++)
 		l += sprintf(str + l, "%02X", addr[i]);
 
 	uint8_t checksum = get_checkSum(str, n);
 
-	sprintf(str + l, "%02X", checksum);
+	sprintf(str + l, " %02X", checksum);
 }
 
 static void create_finish_hex(char str[]){
@@ -92,18 +92,35 @@ void transmit_intel_hex_values(uint8_t addr[], uint32_t n)
 
 	uint32_t first_part_addr = 0;
 	uint32_t fist_part_add_curr;
+	uint32_t dif_to_end = 0;
+	uint32_t n_bytes_cur = 0;
 
-	for(int64_t i = n; i > 0; i -= 16){
 
-		fist_part_add_curr = (uint32_t)addr >> 16;
+	for(uint32_t i = 0; i < n; i += n_bytes_cur){
+		fist_part_add_curr = (uint32_t)(addr + i) >> 16;
 
 		if(fist_part_add_curr != first_part_addr){
-			create_addr_hex(str, addr);
+			create_addr_hex(str, addr + i);
 			first_part_addr = fist_part_add_curr;
 			printf("%s\n", str);
 		}
 
-		create_main_data_hex(str, addr, (i > 16) ? 16 : i);
+		/*
+		  this block handles 2 cases:
+		  1) the amount of required data in the line is less than 16
+		  2) when the amount of bytes required for output is 16, but the senior 2 bytes of the address of the blocks are different
+		*/
+		//start of block
+		if((n - i) < 16)
+			n_bytes_cur = n - i;
+		else {
+			dif_to_end = (uint8_t*)((first_part_addr << 16) + 0xFFFF) - (addr + i);
+
+			n_bytes_cur = (dif_to_end > 16) ? 16 : dif_to_end;
+		}
+		//end of block
+
+		create_main_data_hex(str, addr + i, n_bytes_cur);
 		printf("%s\n", str);
 	}
 
