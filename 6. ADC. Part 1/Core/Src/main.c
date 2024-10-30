@@ -97,6 +97,8 @@ int main(void)
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
+  ADC1_Start_IT();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -106,10 +108,6 @@ int main(void)
 
   while (1)
   {
-#if 1
-	ADC1_Start_IT();
-	HAL_Delay(100);
-#endif
 #if 0
 	ADC1_Start_IT();
 	ADC1_PollForConversion(1);
@@ -186,6 +184,8 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, !is_on);
 
 	printf("%d\n", value);
+
+	ADC1_Start_IT();
 }
 #endif
 
@@ -202,6 +202,8 @@ void HAL_ADC_LevelOutOfWindowCallback(ADC_HandleTypeDef* hadc){
 		is_on = 1;
 
 	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, !is_on);
+
+	ADC1_Start_IT();
 }
 #endif
 
