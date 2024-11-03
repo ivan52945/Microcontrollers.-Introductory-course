@@ -149,4 +149,5 @@ HAL_StatusTypeDef ADC1_PollForConversion(uint32_t Timeout)
 {
 	return HAL_ADC_PollForConversion(&hadc1, Timeout);
 }
+
 /* USER CODE END 1 */
