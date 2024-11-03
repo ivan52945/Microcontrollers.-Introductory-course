@@ -116,6 +116,8 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
   }
+
+  return 0;
   /* USER CODE END 3 */
 }
 
