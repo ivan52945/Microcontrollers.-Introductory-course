@@ -24,7 +24,7 @@ void init_gpio_out(GPIO_TypeDef* port, uint16_t pins)
 		__HAL_RCC_GPIOB_CLK_ENABLE();
 	else if (port == GPIOC)
 		__HAL_RCC_GPIOC_CLK_ENABLE();
-	else
+	else // Аналогично init_led ??
 		__HAL_RCC_GPIOC_CLK_ENABLE();
 
 	GPIO_InitTypeDef GPIO_InitStruct = {0};
