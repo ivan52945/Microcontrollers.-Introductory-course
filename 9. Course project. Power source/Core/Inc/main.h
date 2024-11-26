@@ -57,14 +57,30 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define A_Pin GPIO_PIN_0
-#define A_GPIO_Port GPIOB
-#define RANK_0_Pin GPIO_PIN_10
-#define RANK_0_GPIO_Port GPIOA
-#define RANK_1_Pin GPIO_PIN_11
-#define RANK_1_GPIO_Port GPIOA
-#define RANK_2_Pin GPIO_PIN_12
-#define RANK_2_GPIO_Port GPIOA
+#define TIM3_PWM_CH1_Pin GPIO_PIN_6
+#define TIM3_PWM_CH1_GPIO_Port GPIOA
+#define SEGMENT_A_Pin GPIO_PIN_0
+#define SEGMENT_A_GPIO_Port GPIOB
+#define SEGMENT_B_Pin GPIO_PIN_1
+#define SEGMENT_B_GPIO_Port GPIOB
+#define SEGMENT_C_Pin GPIO_PIN_2
+#define SEGMENT_C_GPIO_Port GPIOB
+#define TIM1_ENCODER_CH1_Pin GPIO_PIN_8
+#define TIM1_ENCODER_CH1_GPIO_Port GPIOA
+#define TIM1_ENCODER_CH2_Pin GPIO_PIN_9
+#define TIM1_ENCODER_CH2_GPIO_Port GPIOA
+#define SEGMENT_RANK_2_Pin GPIO_PIN_10
+#define SEGMENT_RANK_2_GPIO_Port GPIOA
+#define SEGMENT_RANK_1_Pin GPIO_PIN_11
+#define SEGMENT_RANK_1_GPIO_Port GPIOA
+#define SEGMENT_RANK_0_Pin GPIO_PIN_12
+#define SEGMENT_RANK_0_GPIO_Port GPIOA
+#define SEGMENT_D_Pin GPIO_PIN_3
+#define SEGMENT_D_GPIO_Port GPIOB
+#define SEGMENT_E_Pin GPIO_PIN_4
+#define SEGMENT_E_GPIO_Port GPIOB
+#define SEGMENT_F_Pin GPIO_PIN_5
+#define SEGMENT_F_GPIO_Port GPIOB
 #define DP_Pin GPIO_PIN_7
 #define DP_GPIO_Port GPIOB
 
