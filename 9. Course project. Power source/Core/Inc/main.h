@@ -57,6 +57,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define ADC1_FEEDBACK_IN0_Pin GPIO_PIN_0
+#define ADC1_FEEDBACK_IN0_GPIO_Port GPIOA
 #define TIM3_PWM_CH1_Pin GPIO_PIN_6
 #define TIM3_PWM_CH1_GPIO_Port GPIOA
 #define SEGMENT_A_Pin GPIO_PIN_0
